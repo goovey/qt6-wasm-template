@@ -1,4 +1,4 @@
-FROM qt-wasm-base
+FROM ghcr.io/goovey/wasm-test/qt6-wasm:latest
 
 # Install Neovim
 RUN curl -LO https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-x86_64.tar.gz \
