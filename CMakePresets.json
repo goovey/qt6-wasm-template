@@ -17,7 +17,8 @@
       "displayName": "Qt 6.8 WASM Debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_CXX_FLAGS_DEBUG": "-g"
+        "CMAKE_CXX_FLAGS_DEBUG": "-g",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     },
     {
@@ -31,7 +32,13 @@
     }
   ],
   "buildPresets": [
-    { "name": "dev", "configurePreset": "qt-wasm-dev" },
-    { "name": "release", "configurePreset": "qt-wasm-release" }
+    {
+      "name": "dev",
+      "configurePreset": "qt-wasm-dev"
+    },
+    {
+      "name": "release",
+      "configurePreset": "qt-wasm-release"
+    }
   ]
 }

@@ -1,0 +1,43 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+  "name": "Qt6-WASM VS Code Dev",
+  "image": "qt-wasm-base:latest",
+  "forwardPorts": [
+    3100
+  ],
+  "portsAttributes": {
+    "3100": {
+      "label": "Qt WASM Server",
+      "onAutoForward": "ignore"
+    }
+  },
+  // Uncomment the next line to run commands after the container is created.
+  // "postCreateCommand": "cat /etc/os-release",
+  // Configure tool-specific properties.
+  // "customizations": {},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "llvm-vs-code-extensions.vscode-clangd",
+        "ms-vscode.cmake-tools",
+        "cheshirekow.cmake-format",
+        "xaver.clang-format"
+      ],
+      "settings": {
+        "cmake.preset": "qt-wasm-default",
+        "clangd.arguments": [
+          "--compile-commands-dir=${workspaceFolder}/build",
+          "--query-driver=/opt/emsdk/**/em++"
+        ]
+      }
+    }
+  },
+  "runArgs": [
+    "--env",
+    "DOCKER_BUILDKIT=1"
+  ],
+  "overrideCommand": true,
+  // Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+  "remoteUser": "ubuntu"
+}

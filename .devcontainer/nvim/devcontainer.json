@@ -1,0 +1,30 @@
+{
+  "name": "Qt6-WASM Neovim Dev",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "../.."
+  },
+  "remoteUser": "ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
+  "mounts": [
+    {
+      "source": "${localEnv:HOME}/.config/nvim",
+      "target": "/home/ubuntu/.config/nvim_host",
+      "type": "bind",
+      "readOnly": true
+    },
+    {
+      "source": "nvim-config-independent",
+      "target": "/home/ubuntu/.config/nvim",
+      "type": "volume"
+    },
+    {
+      "source": "nvim-wasm-data",
+      "target": "/home/ubuntu/.local/share/nvim",
+      "type": "volume"
+    }
+  ],
+  "postCreateCommand": "bash .devcontainer/nvim/setup.sh"
+}

@@ -1,11 +1,10 @@
 # Variables
-IMAGE=qt-wasm-builder
+IMAGE=qt-wasm-base
 BUILD_DIR=build
 UID=$(shell id -u)
 GID=$(shell id -g)
 
-# Default mode is 'dev'
-MODE ?= dev
+MODE ?= release
 
 # Logic to select the correct pair of presets based on MODE
 ifeq ($(MODE),release)
@@ -17,7 +16,7 @@ else
     BUILD_PRESET=dev
 endif
 
-.PHONY: all clean server help
+.PHONY: all clean push server help
 
 all: ## Build the WebAssembly application (Default MODE=dev, or MODE=release)
 	@echo "Targeting MODE: $(MODE)"
@@ -34,6 +33,10 @@ all: ## Build the WebAssembly application (Default MODE=dev, or MODE=release)
 
 clean: ## Remove the build directory
 	rm -rf $(BUILD_DIR)
+
+push:
+	docker tag qt-wasm-base:latest ghcr.io/goovey/wasm-test/qt6-wasm:latest
+	docker push ghcr.io/goovey/wasm-test/qt6-wasm:latest
 
 server: ## Start the local Python test server
 	python3 server.py
