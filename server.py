@@ -1,7 +1,7 @@
 import http.server
 import socketserver
 
-PORT = 8080
+PORT = 3100
 
 class WasmHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
